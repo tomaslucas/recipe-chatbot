@@ -12,18 +12,22 @@ from typing import Final, List, Dict
 import litellm  # type: ignore
 from dotenv import load_dotenv
 
+from prompts.load_yaml_file import load_system_prompt  # type: ignore
+
 # Ensure the .env file is loaded as early as possible.
 load_dotenv(override=False)
 
 # --- Constants -------------------------------------------------------------------
 
-SYSTEM_PROMPT: Final[str] = (
-    "You are an expert chef recommending delicious and useful recipes. "
-    "Present only one recipe at a time. If the user doesn't specify what ingredients "
-    "they have available, assume only basic ingredients are available."
-    "Be descriptive in the steps of the recipe, so it is easy to follow."
-    "Have variety in your recipes, don't just recommend the same thing over and over."
-)
+SYSTEM_PROMPT: Final[str] = (load_system_prompt())
+
+# SYSTEM_PROMPT: Final[str] = (
+#     "You are an expert chef recommending delicious and useful recipes. "
+#     "Present only one recipe at a time. If the user doesn't specify what ingredients "
+#     "they have available, assume only basic ingredients are available."
+#     "Be descriptive in the steps of the recipe, so it is easy to follow."
+#     "Have variety in your recipes, don't just recommend the same thing over and over."
+# )
 
 # Fetch configuration *after* we loaded the .env file.
 MODEL_NAME: Final[str] = os.environ.get("MODEL_NAME", "gpt-4o-mini")
