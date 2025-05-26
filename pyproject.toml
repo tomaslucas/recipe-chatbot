@@ -9,6 +9,7 @@ dependencies = [
     "httpx>=0.28.1",
     "litellm>=1.71.0",
     "pandas>=2.2.3",
+    "polars>=1.30.0",
     "python-dotenv>=1.1.0",
     "pyyaml>=6.0.2",
     "rich>=14.0.0",
